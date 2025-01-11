@@ -54,11 +54,11 @@ The Rossmann Retail Sales Prediction project focuses on forecasting daily sales 
 
 **Results:**
 
-| Model                | Train Score | Test Score |
-|---------------------|-------------|------------|
-| Linear Regression   | 0.794625    | 0.794912   |
-| Random Forest       | 0.971139    | 0.826286   |
-| Lasso Regression    | 0.794623    | 0.794912   |
+| Model                   | Training RMSPE | Test RMSPE | Training MAPE | Test MAPE |
+|------------------------|----------------|------------|---------------|-----------|
+| **Linear Regression**   | 3.550759       | 1.132323   | 14.529856     | 14.529823 |
+| **Random Forest**       | 0.067905       | 0.164829   | 5.314279      | 13.289991 |
+| **LARS Lasso Regression** | 4.984096    | 1.238996   | 14.528668     | 14.528301 |
 
 ## Conclusion
 
