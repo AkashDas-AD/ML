@@ -1,26 +1,69 @@
 # Rossmann Retail Sales Prediction
 Sales forecasting is an approach retailers use to anticipate future sales by analyzing past sales, identifying trends, and projecting data into the future. Because retailers generate enormous amounts of data, machine learning technology quickly proves its value. When a machine learning system is fed data—the more, the better—it searches for patterns. Going forward, it can use the patterns it identifies within the data to make better decisions. For example, a company looked at their historical data for the last three years and found that sales have increased by 20% each year. Based on this information, they projected that sales would increase by 20% this year.
 
+## Project Overview
 
+The Rossmann Retail Sales Prediction project focuses on forecasting daily sales for Rossmann stores across different locations. The goal is to help Rossmann optimize sales strategies by predicting future sales based on historical data.
 
-How to create a sales forecast:
+## Project Workflow
 
--List out the goods and services you sell.
+### 1. Data Loading and Exploration
 
--Estimate how much of each you expect to sell.
+**Data fields:**
+- **Id**: Represents a (Store, Date) duple within the test set.
+- **Store**: A unique Id for each store.
+- **Sales**: The turnover for any given day (target variable).
+- **Customers**: The number of customers on a given day.
+- **Open**: Indicator for whether the store was open (0 = closed, 1 = open).
+- **StateHoliday**: Indicates a state holiday:
+  - `a` = public holiday
+  - `b` = Easter holiday
+  - `c` = Christmas
+  - `0` = None
+- **SchoolHoliday**: Indicates if the (Store, Date) was affected by the closure of public schools.
+- **StoreType**: Differentiates between 4 different store models: `a`, `b`, `c`, `d`.
+- **Assortment**: Describes assortment level:
+  - `a` = basic
+  - `b` = extra
+  - `c` = extended
+- **CompetitionDistance**: Distance in meters to the nearest competitor store.
+- **CompetitionOpenSince[Month/Year]**: Approximate month and year when the nearest competitor was opened.
+- **Promo**: Indicates whether a store was running a promo on that day.
+- **Promo2**: Continuing and consecutive promotion for some stores (0 = not participating, 1 = participating).
+- **Promo2Since[Year/Week]**: Year and calendar week when the store started participating in Promo2.
+- **PromoInterval**: Months when Promo2 is renewed (e.g., "Feb,May,Aug,Nov").
 
--Define the unit price or dollar value of each good or service sold.
+### 2. Data Preprocessing
 
--Multiply the number sold by the price.
+- Handled missing values.
+- Feature engineering (e.g., extracting year, month, day).
 
--Determine how much it will cost to produce and sell each good or service.
+### 3. Exploratory Data Analysis (EDA)
 
+- Visualized sales trends across stores and dates.
+- Analyzed the impact of promotions and holidays on sales.
 
+### 4. Model Building
 
-Rossmann operates over 3,000 drug stores in 7 European countries. Currently, Rossmann store managers are tasked with predicting their daily sales for up to six weeks in advance. Store sales are influenced by many factors, including promotions, competition, school and state holidays, seasonality, and locality. With thousands of individual managers predicting sales based on their unique circumstances, the accuracy of results can be quite varied. My work includes various plots and graphs , visualizations , feature engineering , ensemble techniques , different ML algorithms with their respective parameter tuning , analysis and trends . Predictions are of 6 weeks of daily sales for 1,115 stores located across Germany.
+- Split data into training and validation sets.
+- Implemented the following models:
+  - **Linear Regression**
+  - **Random Forest**
+  - **LARS Lasso Regression**
+- Evaluated model performance using **RMSPE** and **MAPE**.
 
-In this project, the Kaggle Rossman challenge is being taken on. The goal is to predict the Sales of a given store on a given day. Model performance is evaluated on the root mean absolute percentage error (MAPE).
+**Results:**
 
+| Model                | Train Score | Test Score |
+|---------------------|-------------|------------|
+| Linear Regression   | 0.794625    | 0.794912   |
+| Random Forest       | 0.971139    | 0.826286   |
+| Lasso Regression    | 0.794623    | 0.794912   |
+
+## Conclusion
+
+- **Random Forest:** Exhibits the lowest errors on both the training and test sets but shows signs of overfitting due to the large gap between training and test performance, particularly in MAPE.
+- **Linear Regression & LARS Lasso Regression:** Both models exhibit similar performance with relatively high errors but demonstrate consistent behavior across training and test datasets.
 
 
 
